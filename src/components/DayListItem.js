@@ -7,6 +7,7 @@ export default function DayListItem(props) {
     "day-list__item--selected": props.selected,
     "day-list__item--full": props.spots === 0
   });
+  
   let activeSpots;
   if (props.spots === 0) {
     activeSpots = <h3 className="text--light">no spots remaining</h3>
@@ -17,7 +18,8 @@ export default function DayListItem(props) {
   }
 
   return (
-    <li className={dayClass} onClick={() => props.setDay(props.name)}>
+    // Line below does not work in sidebar, will ask for assistance tomorrow.
+    <li onClick={() => props.setDay(props.name)} className={dayClass}> 
       <h2 className="text--regular">{props.name}</h2>
       {activeSpots}
 
