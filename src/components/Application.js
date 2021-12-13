@@ -3,15 +3,25 @@ import React, { useState, useEffect } from "react";
 import "components/Application.scss";
 import axios from "axios";
 
+
+
 export default function Application(props) {
-  const [day, setDay] = useState ("Monday")
-  const [days, setDays] = useState([]);
+  const [state, setState] = useState({
+    day: "Monday",
+    days: [],
+    // you may put the line below, but will have to remove/comment hardcoded appointments variable
+    appointments: {}
+  });
+
+  const dailyAppointments = [];
+  const setDay = day => setState({ ...state, day });
+  const setDays = days => setState(prev => ({ ...state, days }));
 
   useEffect(() => {
     axios.get("/api/days")
-    .then((response) => {
-      setDays(response.data)
-    })
+      .then((response) => {
+        setDays(response.data)
+      })
   }, []);
 
   return (
@@ -26,8 +36,8 @@ export default function Application(props) {
         <nav className="sidebar__menu">
 
           <DayList
-            days={days}
-            value={day}
+            days={state.days}
+            value={state.day}
             onChange={setDay}
           />
 
