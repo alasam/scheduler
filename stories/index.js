@@ -18,6 +18,7 @@ import Show from "components/Appointment/Show";
 import Confirm from "components/Appointment/Confirm";
 import Status from "components/Appointment/Status";
 import Error from "components/Appointment/Error";
+import Form from "components/Appointment/Form";
 
 storiesOf("Button", module)
   .addParameters({
@@ -39,11 +40,11 @@ storiesOf("DayListItem", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
   })
-  .add("Unselected", () => <DayListItem name="Monday" spots={5} />)
-  .add("Selected", () => <DayListItem name="Monday" spots={5} selected />)
-  .add("Full", () => <DayListItem name="Monday" spots={0} />)
+  .add("Unselected", () => <DayListItem name="Monday" spots={5} onChange={action("setDay")}/>)
+  .add("Selected", () => <DayListItem name="Monday" spots={5} onChange={action("setDay")} selected />)
+  .add("Full", () => <DayListItem name="Monday" spots={0} onChange={action("setDay")}/>)
   .add("Clickable", () => (
-    <DayListItem name="Tuesday" setDay={action("setDay")} spots={5} />
+    <DayListItem name="Tuesday" setDay={action("setDay")} spots={5} onChange={action("setDay")}/>
   ));
 
 const days = [
@@ -128,11 +129,13 @@ storiesOf("InterviewerList", module)
   .add("Initial", () => (
     <InterviewerList
       interviewers={interviewers}
+      onChange={action("setInterviewer")}
     />
   ))
   .add("Selected", () => (
     <InterviewerList
       interviewers={interviewers}
+      onChange={action("setInterviewer")}
       value={3}
     />
   ))
@@ -172,5 +175,19 @@ storiesOf("Appointment", module)
     <Error
       message="Sorry! Could not delete chosen appointment."
       onClose={action("onClose")}
+    />)
+  .add("Form: Edit", () => 
+    <Form
+      student="Anthony Lasam"
+      interviewer="1"
+      interviewers={interviewers}
+      onSave={action("onSave")}
+      onCancel={action("onCancel")}
+    />)
+  .add("Form: Create", () => 
+    <Form
+      interviewers={interviewers}
+      onSave={action("onSave")}
+      onCancel={action("onCancel")}
     />)
 
