@@ -23,20 +23,21 @@ export default function Appointment(props) {
   const SAVING = "SAVING";
   const SHOW = 'SHOW';
   
- 
-  
+
 
   function save(name, interviewer) {
     transition(SAVING, true)
     const interview = {
       student: name,
       interviewer
-    };
+    }; 
+  
     props.bookInterview(props.id, interview)
     .then (() =>
     transition(SHOW)
     )
     .catch(error =>{
+      console.log(">>>>>!!!!",error)
       transition(ERROR_SAVE, true);
     })
   }
@@ -68,7 +69,7 @@ export default function Appointment(props) {
           onEdit={() => transition(EDIT)}
         />
       )}
-      {mode === CREATE && <Form interviewers={[]} onSave={save} onCancel={back} />}
+      {mode === CREATE && <Form interviewers={props.interviewers} onSave={save} onCancel={back} />}
       {mode === SAVING && <Status message={"SAVING"}  />}
       {mode === CONFIRM && <Confirm message={"Are you sure you want to delete?"} OnConfirm={deleteApp} OnCancel={() => back()} />}
       {mode === DELETING && <Status message={"DELETING"} />}

@@ -8,10 +8,6 @@ export default function Form(props) {
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
   const [error, setError] = useState("");
 
-  const save = () => {
-    props.onSave(student, interviewer)
-  }
-
   const reset = () => {
     setInterviewer(null)
     setStudent("")
@@ -32,7 +28,6 @@ export default function Form(props) {
     props.onSave(student, interviewer);
     setError("")
   }
-
 
   return (
     <main className="appointment__card appointment__card--create">
