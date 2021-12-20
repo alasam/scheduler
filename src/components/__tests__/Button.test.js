@@ -1,11 +1,12 @@
+// Import External Resources
 import React from "react";
-
 import { render, cleanup, fireEvent } from "@testing-library/react";
-
 import Button from "components/Button";
 
+// Cleanup Command
 afterEach(cleanup);
 
+// Button Component Test
 it("renders without crashing", () => {
   render(<Button />);
 });

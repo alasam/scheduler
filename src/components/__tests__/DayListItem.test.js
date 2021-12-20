@@ -1,11 +1,12 @@
+// Import External Resources
 import React from "react";
-
 import { render, cleanup } from "@testing-library/react";
-
 import DayListItem from "components/DayListItem";
 
+// Cleanup Command
 afterEach(cleanup);
 
+// DayListItem component tests
 it("renders without crashing", () => {
   render(<DayListItem />);
 });
