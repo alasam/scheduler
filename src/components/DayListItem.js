@@ -19,7 +19,7 @@ export default function DayListItem(props) {
 
   return (
     // Line below does not work in sidebar, will ask for assistance tomorrow.
-    <li onClick={() => props.setDay(props.name)} className={dayClass}> 
+    <li onClick={() => props.setDay(props.name)} className={dayClass} data-testid="day"> 
       <h2 className="text--regular">{props.name}</h2>
       {activeSpots}
 
