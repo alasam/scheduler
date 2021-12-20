@@ -1,8 +1,10 @@
+// Import External Resources
 import React from "react";
 
-
+// Show component
 export default function Show(props) {
   return (
+    //HTML Output
     <main className="appointment__card appointment__card--show">
       <section className="appointment__card-left">
         <h2 className="text--regular">{props.student}</h2>

@@ -1,9 +1,13 @@
+// Import External Resources
 import React from "react";
 import DayListItem from "./DayListItem";
 
+// DayList Component
 export default function DayList(props) {
+  //Creating days array
   const days = props.days.map((day) => {
     return (
+      //DaylistItem with props
       <DayListItem
         key={day.id}
         name={day.name}
@@ -16,6 +20,7 @@ export default function DayList(props) {
   )
 
   return (
+    // HTML Output
     <ul>
       {days}
     </ul>

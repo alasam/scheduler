@@ -1,12 +1,13 @@
+// Import External Resources
 import React from "react";
-
 import { render, cleanup } from "@testing-library/react";
-
 import Form from "components/Appointment/Form";
 import { fireEvent } from "@testing-library/react";
 
+// Cleanup Command
 afterEach(cleanup);
 
+// Form Component Tests
 describe("Form", () => {
   const interviewers = [
     {

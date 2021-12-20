@@ -1,28 +1,23 @@
+// Import External Resources
 import DayList from "./DayList";
 import React from "react";
-import "components/Application.scss";
 import Appointment from "./Appointment";
 import { getAppointmentsForDay, getInterview, getInterviewersForDay, } from "helpers/selectors";
 import useApplicationData from "hooks/useApplicationData"
+import "components/Application.scss";
 
+// Application component
 export default function Application(props) {
 
-  const {
-    state,
-    setDay,
-    bookInterview,
-    cancelInterview
-  } = useApplicationData();
-
+  // Variable declarations to functions
+  const { state, setDay, bookInterview, cancelInterview } = useApplicationData();
   const dailyAppointments = getAppointmentsForDay(state, state.day);
-  //const setDays = days => setState(prev => ({ ...state, days }));
-    
-
   const schedule = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
-    const interviewers = getInterviewersForDay (state, state.day);
-    
+    const interviewers = getInterviewersForDay(state, state.day);
+
     return (
+      // Passing down props
       <Appointment
         key={appointment.id}
         id={appointment.id}
@@ -36,6 +31,7 @@ export default function Application(props) {
   });
 
   return (
+    // HTML Output
     <main className="layout">
       <section className="sidebar">
         <img
@@ -60,11 +56,6 @@ export default function Application(props) {
         />
       </section>
       <section className="schedule">
-        {/* {dailyAppointments.map(appointment => (
-          <Appointment
-            key={appointment.id} {...appointment}
-          />
-        ))} */}
         {schedule}
         <Appointment key="last" time="5pm" />
       </section>

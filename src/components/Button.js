@@ -1,7 +1,9 @@
+// Import External Functions
 import React from "react";
 import classNames from "classnames";
 import "components/Button.scss";
 
+// Button component 
 export default function Button(props) {
    const buttonClass = classNames("button", {
      "button--confirm": props.confirm,
@@ -9,6 +11,7 @@ export default function Button(props) {
    });
  
    return (
+     // HTML Output
      <button
        className={buttonClass}
        onClick={props.onClick}

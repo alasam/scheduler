@@ -1,17 +1,19 @@
+// Importing External Resources
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+// useApplicationData custom Hook
 export default function useApplicationData() {
-
+  // State decleration
   const [state, setState] = useState({
     day: "Monday",
     days: [],
     appointments: {},
     interviewers: {}
   });
-
   const setDay = day => setState({ ...state, day });
 
+  // bookInterview function
   function bookInterview(id, interview) {
     const appointment = {
       ...state.appointments[id],
@@ -25,10 +27,11 @@ export default function useApplicationData() {
     setState((prev) => {
       const spotsLeft = updateFreeSpots(prev, appointments);
       return { ...prev, appointments, days: spotsLeft }
-      });
+    });
     return axios.put(`/api/appointments/${id}`, appointment)
   }
 
+  // cancelInterview function
   function cancelInterview(id) {
     const appointment = {
       ...state.appointments[id],
@@ -41,14 +44,15 @@ export default function useApplicationData() {
     setState((prev) => {
       const spotsLeft = updateFreeSpots(prev, appointments);
       return { ...prev, appointments, days: spotsLeft }
-      });
+    });
     return axios.delete(`/api/appointments/${id}`)
   }
 
+  // updateFreeSpots function
   const updateFreeSpots = (state, appointments) => {
     let spotsRemaining = 0;
     const day = state.days.find((day) => day.name === state.day);
-        for(const appointmentID of day.appointments) {
+    for (const appointmentID of day.appointments) {
       if (appointments[appointmentID].interview === null) {
         spotsRemaining++;
       }

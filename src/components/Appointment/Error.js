@@ -1,7 +1,9 @@
+// Import External Resources
 import React from "react";
 
-
+// Error window component
 export default function Error(props) {
+  //HTML output
   return (
     <main className="appointment__card appointment__card--error">
       <section className="appointment__error-message">

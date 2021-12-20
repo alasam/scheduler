@@ -1,13 +1,17 @@
+// Import External Resources
 import React from "react";
-import "components/DayListItem.scss";
 import classNames from "classnames";
+import "components/DayListItem.scss";
 
+// DayListItem component
 export default function DayListItem(props) {
+  // Creating dayClass class
   const dayClass = classNames("day-list__item", {
     "day-list__item--selected": props.selected,
     "day-list__item--full": props.spots === 0
   });
-  
+
+  // Edge cases for no spots, 1 spot, and multiple spots
   let activeSpots;
   if (props.spots === 0) {
     activeSpots = <h3 className="text--light">no spots remaining</h3>
@@ -18,8 +22,8 @@ export default function DayListItem(props) {
   }
 
   return (
-    // Line below does not work in sidebar, will ask for assistance tomorrow.
-    <li onClick={() => props.setDay(props.name)} className={dayClass} data-testid="day"> 
+    // HTML Output
+    <li onClick={() => props.setDay(props.name)} className={dayClass} data-testid="day">
       <h2 className="text--regular">{props.name}</h2>
       {activeSpots}
 
