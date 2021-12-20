@@ -16,10 +16,6 @@ export default function Application(props) {
 
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   //const setDays = days => setState(prev => ({ ...state, days }));
-  
-  if (state.day === "Monday"){
-    console.log(">>>>>>>#####", dailyAppointments)
-  };
     
 
   const schedule = dailyAppointments.map((appointment) => {

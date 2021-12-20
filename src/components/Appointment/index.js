@@ -37,12 +37,13 @@ export default function Appointment(props) {
     transition(SHOW)
     )
     .catch(error =>{
-      console.log(">>>>>!!!!",error)
+
       transition(ERROR_SAVE, true);
     })
   }
 
   function deleteApp (name, interviewer) {
+    console.log("TEST TEST")
     transition(DELETING, true);
     props.cancelInterview(props.id)
     .then(() => {
@@ -71,9 +72,9 @@ export default function Appointment(props) {
       )}
       {mode === CREATE && <Form interviewers={props.interviewers} onSave={save} onCancel={back} />}
       {mode === SAVING && <Status message={"SAVING"}  />}
-      {mode === CONFIRM && <Confirm message={"Are you sure you want to delete?"} OnConfirm={deleteApp} OnCancel={() => back()} />}
+      {mode === CONFIRM && <Confirm message={"Are you sure you want to delete?"} onConfirm={deleteApp} onCancel={() => back()} />}
       {mode === DELETING && <Status message={"DELETING"} />}
-      {mode === EDIT && <Form interviewers={props.interviewers} student={props.interview.interviewer} onSave={save} onCancel={back} />}
+      {mode === EDIT && <Form interviewers={props.interviewers} student={props.interview.student} interviewer={props.interview.interviewer.id} onSave={save} onCancel={() => back()} />}
       {mode === ERROR_SAVE && <Error message="Sorry, could not create appointment!" onClose={() => back()} />}
       {mode === ERROR_DELETE && <Error message="Sorry, could not delete appointment!" onClose={() => back()} />}
       {/* {props.interview ?

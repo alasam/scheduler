@@ -4,9 +4,12 @@ import React, { useState } from 'react';
 
 
 export default function Form(props) {
+
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
   const [error, setError] = useState("");
+
+  console.log("!!!>>>>>>>", interviewer)
 
   const reset = () => {
     setInterviewer(null)
@@ -25,6 +28,11 @@ export default function Form(props) {
       return;
     }
   
+    if (interviewer === null) {       
+      setError('Please pick an interviewer');       
+      return;     
+    }
+    
     props.onSave(student, interviewer);
     setError("")
   }
