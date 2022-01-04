@@ -10,9 +10,6 @@ import Error from "./Error"
 import useVisualMode from "hooks/useVisualMode.js"
 import "components/Appointment/styles.scss"
 
-// Overall Appointment Component
-export default function Appointment(props) {
-
   // Mode constants declarations 
   const CONFIRM = "CONFIRM";
   const CREATE = 'CREATE';
@@ -24,15 +21,22 @@ export default function Appointment(props) {
   const SAVING = "SAVING";
   const SHOW = 'SHOW';
 
+// Overall Appointment Component
+export default function Appointment(props) {
+
+  const { mode, transition, back } = useVisualMode(
+    props.interview ? SHOW : EMPTY
+  );
+
 
   // Save function to save appointment
   function save(name, interviewer) {
-    transition(SAVING, true)
+    
     const interview = {
       student: name,
       interviewer
     };
-
+    transition(SAVING, true)
     props.bookInterview(props.id, interview)
       .then(() =>
         transition(SHOW)
@@ -54,9 +58,7 @@ export default function Appointment(props) {
       })
   };
 
-  const { mode, transition, back } = useVisualMode(
-    props.interview ? SHOW : EMPTY
-  );
+
 
   return (
     //HTML output
