@@ -10,7 +10,7 @@ import "components/Application.scss";
 export default function Application(props) {
 
   // Variable declarations to functions
-  const { state, setDay, bookInterview, cancelInterview } = useApplicationData();
+  const { state, setDay, bookInterview, cancelInterview, updateInterview } = useApplicationData();
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const schedule = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
@@ -25,6 +25,7 @@ export default function Application(props) {
         interview={interview}
         interviewers={interviewers}
         bookInterview={bookInterview}
+        updateInterview={updateInterview}
         cancelInterview={cancelInterview}
       />
     );
